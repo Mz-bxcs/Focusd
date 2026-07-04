@@ -9,7 +9,7 @@ const DURATIONS = [15, 25, 45, 90]
 
 const TILES = [
   { to: '/blurt', title: 'Blurt', detail: 'Write everything you know before you study it.' },
-  { to: '/ucat', title: 'Learn', detail: 'VR, DM, QR, AR, and SJT practice.' },
+  { to: '/ucat', title: 'Learn', detail: 'VR, DM, QR, SJT, and Mixed Practice.' },
   { to: '/study-plan', title: 'Study Plan', detail: 'A tailored plan, read aloud if you want.' },
   { to: '/jarvis', title: 'focusd Jarvis', detail: 'Ask anything, hear it back.' },
   { to: '/clarity', title: 'Clarity', detail: 'Ambient sounds, NSDR, and box breathing.' },

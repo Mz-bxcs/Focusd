@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { SECTION_META, QUESTIONS } from '../data/ucat'
+import { SECTION_META, QUESTIONS, MIXED_QUESTION_COUNT } from '../data/ucat'
 import './UCATHub.css'
 
 const ICON_PATHS = {
@@ -20,17 +20,19 @@ const ICON_PATHS = {
       <path d="M4 20V10M10 20V4M16 20v-7M4 20h16" />
     </>
   ),
-  AR: (
-    <>
-      <rect x="3.5" y="3.5" width="7" height="7" rx="1" />
-      <circle cx="17" cy="7" r="3.5" />
-      <path d="M3.5 20.5 8 13l4.5 7.5z" />
-    </>
-  ),
   SJT: (
     <>
       <path d="M20 11.5a8 8 0 1 1-3.4-6.55" />
       <path d="m9 12 2 2 4-4" />
+    </>
+  ),
+  MIXED: (
+    <>
+      <polyline points="16 3 21 3 21 8" />
+      <line x1="4" y1="20" x2="21" y2="3" />
+      <polyline points="21 16 21 21 16 21" />
+      <line x1="15" y1="15" x2="21" y2="21" />
+      <line x1="4" y1="4" x2="9" y2="9" />
     </>
   ),
 }
@@ -48,11 +50,11 @@ export default function UCATHub() {
     <div className="ucat-hub">
       <p className="ucat-eyebrow">Learn</p>
       <h1 className="ucat-title">Practice by section.</h1>
-      <p className="ucat-sub">All five official UCAT sections, with a tailored Gemini practice plan for each.</p>
+      <p className="ucat-sub">All four official UCAT sections, plus a shuffled Mixed Practice set, with a tailored Gemini practice plan for each.</p>
 
       <div className="ucat-section-grid">
         {Object.entries(SECTION_META).map(([code, meta]) => {
-          const count = QUESTIONS.filter((q) => q.section === code).length
+          const count = code === 'MIXED' ? MIXED_QUESTION_COUNT : QUESTIONS.filter((q) => q.section === code).length
           return (
             <div key={code} className="ucat-section-card">
               <Link to={`/ucat/${code}`} className="ucat-section-card-link">

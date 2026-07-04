@@ -1,12 +1,17 @@
 import { useState, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { SECTION_META, QUESTIONS } from '../data/ucat'
+import { SECTION_META, QUESTIONS, MIXED_QUESTION_COUNT } from '../data/ucat'
 import './UCATSection.css'
 
 export default function UCATSection() {
   const { section } = useParams()
   const meta = SECTION_META[section]
-  const questions = useMemo(() => QUESTIONS.filter((q) => q.section === section), [section])
+  const questions = useMemo(() => {
+    if (section === 'MIXED') {
+      return [...QUESTIONS].sort(() => Math.random() - 0.5).slice(0, MIXED_QUESTION_COUNT)
+    }
+    return QUESTIONS.filter((q) => q.section === section)
+  }, [section])
 
   const [index, setIndex] = useState(0)
   const [selected, setSelected] = useState(null)

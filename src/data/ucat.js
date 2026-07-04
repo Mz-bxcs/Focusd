@@ -1,5 +1,6 @@
 // Ported from northstar-app/app/lib/questions.ts, TypeScript types stripped.
-// Covers all 5 official UCAT sections: VR, DM, QR, AR, SJT.
+// Covers 4 official UCAT sections (VR, DM, QR, SJT) plus a Mixed Practice
+// section that shuffles questions across all of them.
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -7,12 +8,14 @@
 // ─── Section Metadata ────────────────────────────────────────────────────────
 
 export const SECTION_META = {
-  VR:  { label: "Verbal Reasoning",       timeSec: 90, desc: "Passages · True / False / Can't Tell",          color: "#6366f1" },
-  DM:  { label: "Decision Making",        timeSec: 90, desc: "Logic, Venn diagrams & argument analysis",       color: "var(--teal-600)" },
-  QR:  { label: "Quantitative Reasoning", timeSec: 90, desc: "Data tables, graphs & calculations",             color: "#0ea5e9" },
-  AR:  { label: "Abstract Reasoning",     timeSec: 45, desc: "Pattern recognition & sequences",                color: "#8b5cf6" },
-  SJT: { label: "Situational Judgement",  timeSec: 60, desc: "Clinical scenarios & professional dilemmas",     color: "#10b981" },
+  VR:    { label: "Verbal Reasoning",       timeSec: 90, desc: "Passages · True / False / Can't Tell",          color: "#6366f1" },
+  DM:    { label: "Decision Making",        timeSec: 90, desc: "Logic, Venn diagrams & argument analysis",       color: "var(--teal-600)" },
+  QR:    { label: "Quantitative Reasoning", timeSec: 90, desc: "Data tables, graphs & calculations",             color: "#0ea5e9" },
+  SJT:   { label: "Situational Judgement",  timeSec: 60, desc: "Clinical scenarios & professional dilemmas",     color: "#10b981" },
+  MIXED: { label: "Mixed Practice",         timeSec: 75, desc: "A shuffled mix of VR, DM, QR & SJT questions",   color: "#8b5cf6" },
 };
+
+export const MIXED_QUESTION_COUNT = 20;
 
 // ─── Topic Definitions ───────────────────────────────────────────────────────
 
@@ -36,11 +39,6 @@ export const TOPIC_DEFS = [
   { id: "qr_tables",         section: "QR",  name: "Data Tables & Graphs" },
   { id: "qr_ratios",         section: "QR",  name: "Ratios & Percentages" },
   { id: "qr_geometry",       section: "QR",  name: "Space & Measurement" },
-  // AR
-  { id: "ar_sets",           section: "AR",  name: "Set Classification" },
-  { id: "ar_series",         section: "AR",  name: "Series Completion" },
-  { id: "ar_matrix",         section: "AR",  name: "Matrix Reasoning" },
-  { id: "ar_analogy",        section: "AR",  name: "Analogies" },
   // SJT
   { id: "sjt_safety",        section: "SJT", name: "Patient Safety" },
   { id: "sjt_ethics",        section: "SJT", name: "Ethics & Consent" },
@@ -897,130 +895,6 @@ Current beds: 30 (each bed space is 2 m × 3 m)`,
     options: [{ key: "A", label: "8 additional beds" }, { key: "B", label: "9 additional beds" }, { key: "C", label: "10 additional beds" }, { key: "D", label: "12 additional beds" }],
     correct: "C",
     explanation: "Target bed area = 405 × 0.60 = 243 m². Current bed area = 30 × (2 × 3) = 180 m². Additional area available = 243 − 180 = 63 m². Each bed = 6 m². Additional beds = 63 ÷ 6 = 10.5 → 10 complete additional beds.",
-  },
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // ABSTRACT REASONING (ids 300–315)
-  // ══════════════════════════════════════════════════════════════════════════
-
-  // ── Set 1: Number sequences ────────────────────────────────────────────────
-  {
-    id: 300, section: "AR", topicId: "ar_series", difficulty: "Easy",
-    prompt: "What is the next number in the sequence? 3, 6, 12, 24, ___",
-    options: [{ key: "A", label: "36" }, { key: "B", label: "48" }, { key: "C", label: "42" }, { key: "D", label: "32" }],
-    correct: "B",
-    explanation: "Each term is multiplied by 2: 3 × 2 = 6, 6 × 2 = 12, 12 × 2 = 24, 24 × 2 = 48.",
-  },
-  {
-    id: 301, section: "AR", topicId: "ar_series", difficulty: "Easy",
-    prompt: "What is the next number in the sequence? 1, 4, 9, 16, ___",
-    options: [{ key: "A", label: "20" }, { key: "B", label: "24" }, { key: "C", label: "25" }, { key: "D", label: "36" }],
-    correct: "C",
-    explanation: "These are perfect squares: 1², 2², 3², 4², 5² = 25.",
-  },
-  {
-    id: 302, section: "AR", topicId: "ar_series", difficulty: "Medium",
-    prompt: "What is the next number in the sequence? 2, 5, 10, 17, 26, ___",
-    options: [{ key: "A", label: "33" }, { key: "B", label: "37" }, { key: "C", label: "35" }, { key: "D", label: "38" }],
-    correct: "B",
-    explanation: "Differences between terms: +3, +5, +7, +9, +11. The differences increase by 2 each time. Next difference = +11, so 26 + 11 = 37.",
-  },
-  {
-    id: 303, section: "AR", topicId: "ar_series", difficulty: "Hard",
-    prompt: "What is the next number in the sequence? 1, 1, 2, 3, 5, 8, ___",
-    options: [{ key: "A", label: "13" }, { key: "B", label: "11" }, { key: "C", label: "16" }, { key: "D", label: "12" }],
-    correct: "A",
-    explanation: "This is the Fibonacci sequence: each term is the sum of the two preceding terms. 5 + 8 = 13.",
-  },
-
-  // ── Set 2: Letter sequences ────────────────────────────────────────────────
-  {
-    id: 304, section: "AR", topicId: "ar_series", difficulty: "Easy",
-    prompt: "What is the next letter in the sequence? A, C, E, G, ___",
-    options: [{ key: "A", label: "H" }, { key: "B", label: "I" }, { key: "C", label: "J" }, { key: "D", label: "K" }],
-    correct: "B",
-    explanation: "Every other letter of the alphabet (skipping one): A, C, E, G, I. The pattern skips one letter each time (+2).",
-  },
-  {
-    id: 305, section: "AR", topicId: "ar_series", difficulty: "Easy",
-    prompt: "What is the next letter in the sequence? Z, X, V, T, ___",
-    options: [{ key: "A", label: "S" }, { key: "B", label: "R" }, { key: "C", label: "Q" }, { key: "D", label: "P" }],
-    correct: "B",
-    explanation: "Starting at Z and moving backwards, skipping one letter each time (−2): Z, X, V, T, R.",
-  },
-  {
-    id: 306, section: "AR", topicId: "ar_series", difficulty: "Medium",
-    prompt: "What comes next in the sequence? AZ, BY, CX, DW, ___",
-    options: [{ key: "A", label: "EV" }, { key: "B", label: "EU" }, { key: "C", label: "FV" }, { key: "D", label: "EW" }],
-    correct: "A",
-    explanation: "First letter advances alphabetically (A→B→C→D→E). Second letter retreats alphabetically (Z→Y→X→W→V). Next pair: EV.",
-  },
-  {
-    id: 307, section: "AR", topicId: "ar_series", difficulty: "Hard",
-    prompt: "What is the next letter in the sequence? A, B, D, G, K, ___",
-    options: [{ key: "A", label: "N" }, { key: "B", label: "O" }, { key: "C", label: "P" }, { key: "D", label: "Q" }],
-    correct: "C",
-    explanation: "Gaps between letters: +1, +2, +3, +4, +5. A(+1)=B, B(+2)=D, D(+3)=G, G(+4)=K, K(+5)=P.",
-  },
-
-  // ── Set 3: Set classification ──────────────────────────────────────────────
-  {
-    id: 308, section: "AR", topicId: "ar_sets", difficulty: "Easy",
-    prompt: "Set A contains shapes with an even number of sides. Set B contains shapes with an odd number of sides. A regular hexagon belongs to which set?",
-    options: [{ key: "A", label: "Set A only" }, { key: "B", label: "Set B only" }, { key: "C", label: "Both sets" }, { key: "D", label: "Neither set" }],
-    correct: "A",
-    explanation: "A hexagon has 6 sides. 6 is even, so it belongs to Set A (even sides). 6 is not odd, so it does not belong to Set B.",
-  },
-  {
-    id: 309, section: "AR", topicId: "ar_sets", difficulty: "Medium",
-    prompt: "Set A contains multiples of 3. Set B contains multiples of 4. The number 24 belongs to which set(s)?",
-    options: [{ key: "A", label: "Set A only" }, { key: "B", label: "Set B only" }, { key: "C", label: "Both Set A and Set B" }, { key: "D", label: "Neither set" }],
-    correct: "C",
-    explanation: "24 ÷ 3 = 8 (exactly), so 24 is a multiple of 3 → Set A. 24 ÷ 4 = 6 (exactly), so 24 is a multiple of 4 → Set B. 24 belongs to both sets.",
-  },
-  {
-    id: 310, section: "AR", topicId: "ar_sets", difficulty: "Medium",
-    prompt: "Set A contains prime numbers. Set B contains perfect square numbers. The number 4 belongs to which set(s)?",
-    options: [{ key: "A", label: "Set A only" }, { key: "B", label: "Set B only" }, { key: "C", label: "Both Set A and Set B" }, { key: "D", label: "Neither set" }],
-    correct: "B",
-    explanation: "4 = 2², so it is a perfect square → Set B. 4 is not prime (it is divisible by 2), so it does not belong to Set A.",
-  },
-  {
-    id: 311, section: "AR", topicId: "ar_sets", difficulty: "Hard",
-    prompt: "Set A: numbers whose digits sum to an odd total. Set B: numbers whose digits sum to an even total. The number 347 belongs to which set?",
-    options: [{ key: "A", label: "Set A only" }, { key: "B", label: "Set B only" }, { key: "C", label: "Both sets" }, { key: "D", label: "Neither set" }],
-    correct: "B",
-    explanation: "Sum of digits of 347: 3 + 4 + 7 = 14. 14 is even, so 347 belongs to Set B. Since a number's digit sum cannot be both odd and even simultaneously, it cannot be in Set A.",
-  },
-
-  // ── Set 4: Matrix and analogy reasoning ───────────────────────────────────
-  {
-    id: 312, section: "AR", topicId: "ar_analogy", difficulty: "Easy",
-    prompt: "Circle is to Sphere as Square is to ___?",
-    options: [{ key: "A", label: "Rectangle" }, { key: "B", label: "Cube" }, { key: "C", label: "Cylinder" }, { key: "D", label: "Triangle" }],
-    correct: "B",
-    explanation: "A Circle is the 2D equivalent of a Sphere (3D). By the same analogy, a Square (2D) maps to a Cube (3D). Both transformations move from a 2D shape to its 3D counterpart.",
-  },
-  {
-    id: 313, section: "AR", topicId: "ar_matrix", difficulty: "Medium",
-    prompt: "2 is to 8 as 3 is to ___? (The same mathematical relationship applies.)",
-    options: [{ key: "A", label: "9" }, { key: "B", label: "12" }, { key: "C", label: "27" }, { key: "D", label: "18" }],
-    correct: "C",
-    explanation: "2³ = 8. The relationship is cubing the number. Applying the same rule: 3³ = 27.",
-  },
-  {
-    id: 314, section: "AR", topicId: "ar_analogy", difficulty: "Medium",
-    prompt: "Doctor is to Hospital as Pilot is to ___?",
-    options: [{ key: "A", label: "Aeroplane" }, { key: "B", label: "Airport" }, { key: "C", label: "Runway" }, { key: "D", label: "Cockpit" }],
-    correct: "A",
-    explanation: "A Doctor works within / operates a Hospital. A Pilot works within / operates an Aeroplane. The relationship is 'professional to the vehicle or institution they operate within.'",
-  },
-  {
-    id: 315, section: "AR", topicId: "ar_matrix", difficulty: "Hard",
-    prompt: "In a 3×3 number grid: Row 1: 2, 4, 8 | Row 2: 3, 6, 12 | Row 3: 5, ?, 20. What is the missing number?",
-    options: [{ key: "A", label: "8" }, { key: "B", label: "10" }, { key: "C", label: "15" }, { key: "D", label: "12" }],
-    correct: "B",
-    explanation: "Each row doubles across its columns: 2×2=4, 4×2=8 | 3×2=6, 6×2=12 | 5×2=10, 10×2=20. The missing number is 5×2 = 10.",
   },
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -2118,105 +1992,6 @@ Cancer (2-week)      97%   95%   93%   91%`,
     options: [{ key: "A", label: "42" }, { key: "B", label: "48" }, { key: "C", label: "56" }, { key: "D", label: "64" }],
     correct: "C",
     explanation: "Ratio parts = 1+4+2 = 7. With 8 doctors (1 part): nurses = 32, HCAs = 16. Total = 8+32+16 = 56.",
-  },
-
-  // ══════════════════════════════════════════════════════════════════════════
-  // ABSTRACT REASONING — additional questions (ids 316–327)
-  // ══════════════════════════════════════════════════════════════════════════
-
-  {
-    id: 316, section: "AR", topicId: "ar_analogy", difficulty: "Easy",
-    prompt: "Stethoscope is to auscultation as ophthalmoscope is to ___",
-    options: [{ key: "A", label: "Surgery" }, { key: "B", label: "Fundoscopy" }, { key: "C", label: "Measurement" }, { key: "D", label: "Injection" }],
-    correct: "B",
-    explanation: "A stethoscope is the instrument used for auscultation; an ophthalmoscope is the instrument used for fundoscopy (examining the retina/optic disc).",
-  },
-  {
-    id: 317, section: "AR", topicId: "ar_analogy", difficulty: "Medium",
-    prompt: "Tachycardia is to fast as bradycardia is to ___",
-    options: [{ key: "A", label: "Irregular" }, { key: "B", label: "Slow" }, { key: "C", label: "Strong" }, { key: "D", label: "Absent" }],
-    correct: "B",
-    explanation: "'Tachy-' means fast (as in tachycardia = fast heart rate); 'brady-' means slow (bradycardia = slow heart rate). Same prefix logic.",
-  },
-  {
-    id: 318, section: "AR", topicId: "ar_analogy", difficulty: "Medium",
-    prompt: "Hypertension is to blood pressure as hyperglycaemia is to ___",
-    options: [{ key: "A", label: "Temperature" }, { key: "B", label: "Oxygen saturation" }, { key: "C", label: "Blood glucose" }, { key: "D", label: "Heart rate" }],
-    correct: "C",
-    explanation: "Hypertension = elevated blood pressure. Hyperglycaemia = elevated blood glucose. The 'hyper-' prefix indicates elevation in both cases.",
-  },
-  {
-    id: 319, section: "AR", topicId: "ar_analogy", difficulty: "Hard",
-    prompt: "The cerebellum is to motor coordination as the hippocampus is to ___",
-    options: [{ key: "A", label: "Emotional regulation" }, { key: "B", label: "Respiratory control" }, { key: "C", label: "Memory formation" }, { key: "D", label: "Visual processing" }],
-    correct: "C",
-    explanation: "The cerebellum coordinates voluntary movement; the hippocampus is critical for forming new memories (encoding and consolidation). Option A relates more to the amygdala.",
-  },
-  {
-    id: 320, section: "AR", topicId: "ar_matrix", difficulty: "Medium",
-    prompt: "A 3×3 number grid. Row 1: 2, 5, 8. Row 2: 11, 14, 17. Row 3: 20, ?, 26. What is the missing number?",
-    options: [{ key: "A", label: "21" }, { key: "B", label: "22" }, { key: "C", label: "23" }, { key: "D", label: "24" }],
-    correct: "C",
-    explanation: "Reading left to right, each cell increases by 3. Row 3: 20, 23, 26. The missing number is 23.",
-  },
-  {
-    id: 321, section: "AR", topicId: "ar_matrix", difficulty: "Hard",
-    prompt: "A 3×3 grid where each row follows a ×2 pattern. Row 1: 1, 2, 4. Row 2: 3, 6, 12. Row 3: 9, ?, 36. What is the missing value?",
-    options: [{ key: "A", label: "15" }, { key: "B", label: "18" }, { key: "C", label: "20" }, { key: "D", label: "24" }],
-    correct: "B",
-    explanation: "Each row doubles across columns (×2). Row 3: 9, 18, 36. Column 1 values (1, 3, 9) multiply by 3 down. Missing = 18.",
-  },
-  {
-    id: 322, section: "AR", topicId: "ar_series", difficulty: "Medium",
-    prompt: "What comes next in the sequence? 2, 6, 12, 20, 30, ___",
-    options: [{ key: "A", label: "38" }, { key: "B", label: "40" }, { key: "C", label: "42" }, { key: "D", label: "44" }],
-    correct: "C",
-    explanation: "Differences: +4, +6, +8, +10, +12. Each difference increases by 2. Next = 30+12 = 42.",
-  },
-  {
-    id: 323, section: "AR", topicId: "ar_series", difficulty: "Hard",
-    prompt: "What is the next number in the sequence? 3, 8, 15, 24, 35, ___",
-    options: [{ key: "A", label: "44" }, { key: "B", label: "46" }, { key: "C", label: "48" }, { key: "D", label: "50" }],
-    correct: "C",
-    explanation: "Pattern: n(n+2) — i.e. 1×3=3, 2×4=8, 3×5=15, 4×6=24, 5×7=35, 6×8=48. Differences are +5,+7,+9,+11,+13.",
-  },
-  {
-    id: 324, section: "AR", topicId: "ar_sets", difficulty: "Medium",
-    prompt: "Set A: shapes with a black border, an even number of sides, and rotational symmetry. Set B: shapes with a grey fill, an odd number of sides, and no rotational symmetry. Which belongs to Set A?",
-    options: [
-      { key: "A", label: "A grey-filled pentagon with no rotational symmetry" },
-      { key: "B", label: "A black-bordered regular hexagon with 6-fold rotational symmetry" },
-      { key: "C", label: "A black-bordered equilateral triangle" },
-      { key: "D", label: "A grey-filled square with 4-fold rotational symmetry" },
-    ],
-    correct: "B",
-    explanation: "Option B: black border ✓, hexagon has 6 sides (even) ✓, 6-fold rotational symmetry ✓ — all three Set A rules satisfied. Option C fails (triangle has 3 sides — odd). Option D fails (grey fill, not black border).",
-  },
-  {
-    id: 325, section: "AR", topicId: "ar_sets", difficulty: "Hard",
-    prompt: "Set A contains: circles, squares, equilateral triangles. Set B contains: ovals, rectangles, scalene triangles. What rule best distinguishes Set A from Set B?",
-    options: [
-      { key: "A", label: "All Set A shapes have at least one right angle" },
-      { key: "B", label: "Set A shapes are regular (all sides and angles equal or perfectly uniform), while Set B shapes are irregular versions of the same families" },
-      { key: "C", label: "Set A shapes are curved; Set B shapes are angular" },
-      { key: "D", label: "Set A shapes have more than 3 sides" },
-    ],
-    correct: "B",
-    explanation: "Circles, squares, and equilateral triangles are all perfectly regular/uniform. Ovals, rectangles, and scalene triangles are irregular variants of the same geometric families. Option B captures this consistent distinction.",
-  },
-  {
-    id: 326, section: "AR", topicId: "ar_analogy", difficulty: "Hard",
-    prompt: "Doctor is to patient as barrister is to ___",
-    options: [{ key: "A", label: "Solicitor" }, { key: "B", label: "Client" }, { key: "C", label: "Court" }, { key: "D", label: "Witness" }],
-    correct: "B",
-    explanation: "A doctor provides professional services to a patient; a barrister provides professional advocacy services to a client. Both are professional-to-person-served relationships.",
-  },
-  {
-    id: 327, section: "AR", topicId: "ar_matrix", difficulty: "Medium",
-    prompt: "In a 3×3 letter grid, each row contains three consecutive letters of the alphabet. Row 1: A, B, C. Row 2: D, E, F. Row 3: G, ?, I. What is the missing letter?",
-    options: [{ key: "A", label: "F" }, { key: "B", label: "G" }, { key: "C", label: "H" }, { key: "D", label: "J" }],
-    correct: "C",
-    explanation: "Row 3 continues the pattern: G, H, I — three consecutive letters. The missing letter is H.",
   },
 
   // ══════════════════════════════════════════════════════════════════════════
