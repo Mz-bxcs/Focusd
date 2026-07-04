@@ -13,9 +13,10 @@
 }
 
 .shell-header-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: calc(28px * var(--space-scale));
+  gap: calc(20px * var(--space-scale));
   padding-top: calc(14px * var(--space-scale));
   padding-bottom: calc(14px * var(--space-scale));
 }
@@ -30,6 +31,7 @@
   text-decoration: none;
   color: var(--ink-900);
   flex-shrink: 0;
+  justify-self: start;
 }
 
 .shell-nav {
@@ -39,6 +41,7 @@
   background: var(--stone-100);
   border-radius: var(--radius-pill);
   padding: 3px;
+  justify-self: center;
 }
 
 .shell-nav-link {
@@ -67,7 +70,7 @@
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-  margin-left: auto;
+  justify-self: end;
 }
 
 .shell-main {
@@ -79,13 +82,14 @@
 
 @container phone-screen (max-width: 460px) {
   .shell-header-inner {
-    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "logo actions" "nav nav";
+    row-gap: 10px;
   }
-  .shell-account-cluster {
-    order: 2;
-  }
+  .shell-logo { grid-area: logo; }
+  .shell-account-cluster { grid-area: actions; }
   .shell-nav {
-    order: 3;
-    width: 100%;
+    grid-area: nav;
+    justify-self: center;
   }
 }
