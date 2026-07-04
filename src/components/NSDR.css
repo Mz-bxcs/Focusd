@@ -1,0 +1,66 @@
+.nsdr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 30, 22, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.nsdr-container {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: calc(28px * var(--space-scale));
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(15, 30, 22, 0.3);
+}
+
+.nsdr-container h2 {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+}
+
+.nsdr-instruction {
+  color: var(--ink-500);
+  margin: 0 0 calc(24px * var(--space-scale));
+  font-size: 0.9rem;
+}
+
+.nsdr-track {
+  height: 6px;
+  background: var(--stone-200);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: calc(24px * var(--space-scale));
+}
+
+.nsdr-fill {
+  height: 100%;
+  background: var(--teal-600);
+  transition: width 1s linear;
+}
+
+.nsdr-line {
+  min-height: 4.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-700);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: calc(24px * var(--space-scale));
+}
+
+.nsdr-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.nsdr-controls .btn {
+  flex: 1;
+}

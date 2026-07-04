@@ -1,0 +1,19 @@
+.jarvis-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal-600), var(--gold-500));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(15, 30, 22, 0.28);
+  z-index: 40;
+  transition: transform var(--motion-duration) ease;
+}
+
+.jarvis-fab:hover {
+  transform: translateY(-2px) scale(1.04);
+}

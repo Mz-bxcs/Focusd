@@ -1,0 +1,116 @@
+.box-breathing-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 30, 22, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  padding: 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.box-breathing-container {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: calc(28px * var(--space-scale));
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(15, 30, 22, 0.3);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.box-breathing-container h2 {
+  color: var(--ink-900);
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+}
+
+.box-breathing-instruction {
+  color: var(--ink-500);
+  margin: 0 0 calc(20px * var(--space-scale));
+  font-size: 0.9rem;
+}
+
+.box-breathing-visual {
+  display: flex;
+  justify-content: center;
+  margin: calc(24px * var(--space-scale)) 0;
+  min-height: 200px;
+}
+
+.breathing-circle {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal-600), var(--gold-500));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: breatheInhale 4s ease-in-out infinite;
+}
+
+.breathing-circle.breathing-hold {
+  animation: none;
+}
+
+.breathing-circle.breathing-exhale {
+  animation: breatheExhale 4s ease-in-out infinite;
+}
+
+@keyframes breatheInhale {
+  0% { transform: scale(0.8); opacity: 0.75; }
+  50%, 100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes breatheExhale {
+  0% { transform: scale(1); opacity: 1; }
+  50%, 100% { transform: scale(0.8); opacity: 0.75; }
+}
+
+.circle-inner {
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.phase-label {
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+.seconds-display {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+
+.cycle-counter {
+  color: var(--ink-500);
+  font-size: 0.9rem;
+  margin: calc(20px * var(--space-scale)) 0;
+}
+
+.breathing-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.breathing-controls .btn {
+  flex: 1;
+}

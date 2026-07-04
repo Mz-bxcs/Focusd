@@ -1,0 +1,19 @@
+.upsell-card {
+  max-width: 480px;
+  margin: calc(60px * var(--space-scale)) auto 0;
+  text-align: center;
+  background: var(--gold-100);
+  border-radius: var(--radius-lg);
+  padding: calc(32px * var(--space-scale));
+}
+
+.upsell-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.upsell-copy {
+  color: var(--ink-700);
+  font-size: 0.9rem;
+  margin-bottom: calc(20px * var(--space-scale));
+}

@@ -1,0 +1,137 @@
+.flash-wrap {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.flash-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.flash-back {
+  text-decoration: none;
+  color: var(--ink-500);
+  font-size: 0.88rem;
+}
+
+.flash-progress-label {
+  font-size: 0.85rem;
+  color: var(--ink-500);
+  font-family: var(--font-mono);
+}
+
+.flash-progress-track {
+  height: 6px;
+  background: var(--stone-200);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: calc(28px * var(--space-scale));
+}
+
+.flash-progress-fill {
+  height: 100%;
+  background: var(--teal-600);
+  transition: width var(--motion-duration) ease;
+}
+
+.flash-card {
+  width: 100%;
+  min-height: 260px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: calc(36px * var(--space-scale));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  box-shadow: var(--card-elevation);
+  transition: border-color var(--motion-duration) ease;
+}
+
+.flash-card.is-flipped {
+  border-color: var(--teal-500);
+}
+
+.flash-card--case .flash-card-text {
+  font-size: 1.05rem;
+  font-weight: 400;
+  text-align: left;
+  max-width: 48ch;
+}
+
+.flash-card-eyebrow {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+  color: var(--teal-600);
+}
+
+.flash-card-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink-900);
+  max-width: 42ch;
+  line-height: 1.5;
+}
+
+.flash-card-hint {
+  font-size: 0.8rem;
+  color: var(--ink-300);
+}
+
+.flash-tools {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.flash-tts-btn {
+  background: transparent;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  color: var(--ink-700);
+}
+
+.flash-confidence {
+  margin-top: calc(28px * var(--space-scale));
+  text-align: center;
+}
+
+.flash-confidence-label {
+  font-size: 0.9rem;
+  color: var(--ink-500);
+  margin-bottom: 12px;
+}
+
+.flash-confidence-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.flash-conf {
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--paper);
+}
+
+.flash-conf--again { background: var(--brick-500); }
+.flash-conf--good { background: var(--teal-600); }
+.flash-conf--easy { background: var(--gold-500); color: var(--ink-900); }
+
+.flash-empty {
+  text-align: center;
+  padding-top: 60px;
+}

@@ -1,0 +1,140 @@
+.progress-page {
+  max-width: 640px;
+}
+
+.progress-title {
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+}
+
+.progress-sub {
+  color: var(--ink-500);
+  margin-bottom: calc(32px * var(--space-scale));
+}
+
+.momentum-card {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: calc(20px * var(--space-scale));
+  margin-bottom: calc(28px * var(--space-scale));
+}
+
+.momentum-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.momentum-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-700);
+}
+
+.momentum-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--teal-700);
+}
+
+.momentum-track {
+  height: 10px;
+  background: var(--stone-200);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.momentum-fill {
+  height: 100%;
+  background: var(--teal-600);
+  transition: width var(--motion-duration) ease;
+}
+
+.momentum-copy {
+  font-size: 0.85rem;
+  color: var(--ink-500);
+}
+
+.progress-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: calc(40px * var(--space-scale));
+  flex-wrap: wrap;
+}
+
+.progress-stat {
+  flex: 1;
+  min-width: 130px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: calc(18px * var(--space-scale));
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.progress-stat-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--teal-700);
+}
+
+.progress-stat-label {
+  font-size: 0.82rem;
+  color: var(--ink-500);
+}
+
+.progress-section-title {
+  font-size: 1.05rem;
+  margin-bottom: 16px;
+}
+
+.progress-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-box-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 30px;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-box-label {
+  font-size: 0.85rem;
+  color: var(--ink-700);
+}
+
+.progress-box-track {
+  height: 10px;
+  background: var(--stone-200);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progress-box-fill {
+  height: 100%;
+  background: var(--teal-600);
+  transition: width var(--motion-duration) ease;
+}
+
+.progress-box-count {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-500);
+  text-align: right;
+}
+
+.progress-empty {
+  margin-top: 20px;
+  color: var(--ink-500);
+  font-size: 0.9rem;
+}

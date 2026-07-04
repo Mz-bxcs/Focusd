@@ -1,0 +1,140 @@
+.jarvis-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+
+/* ─── ORB ─── */
+.jarvis-orb {
+  position: relative;
+  width: 240px;
+  height: 240px;
+}
+
+.jarvis-orb svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 20px rgba(31, 156, 122, 0.2));
+}
+
+.jarvis-ring {
+  fill: none;
+  stroke: var(--teal-600);
+  stroke-width: 1.5;
+  opacity: 0.4;
+  transform-origin: center;
+  transition: stroke-width 0.1s, opacity 0.15s;
+}
+
+.jarvis-ring.pulse {
+  stroke-width: 3.5;
+  opacity: 1;
+}
+
+.jarvis-core {
+  fill: rgba(31, 156, 122, 0.12);
+  stroke: var(--teal-600);
+  stroke-width: 2;
+  opacity: 0.9;
+}
+
+/* Idle breathing */
+.idle .jarvis-ring:nth-child(1) { animation: jarvis-breathe 4s ease-in-out infinite; }
+.idle .jarvis-ring:nth-child(2) { animation: jarvis-breathe 4s ease-in-out infinite 0.5s; }
+.idle .jarvis-ring:nth-child(3) { animation: jarvis-breathe 4s ease-in-out infinite 1s; }
+
+@keyframes jarvis-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50%      { transform: scale(1.04); opacity: 0.8; }
+}
+
+/* Thinking flicker */
+.thinking .jarvis-ring:nth-child(1) { animation: jarvis-flicker 0.6s ease-in-out infinite; }
+.thinking .jarvis-ring:nth-child(2) { animation: jarvis-flicker 0.6s ease-in-out infinite 0.1s; }
+.thinking .jarvis-ring:nth-child(3) { animation: jarvis-flicker 0.6s ease-in-out infinite 0.2s; }
+
+@keyframes jarvis-flicker {
+  0%, 100% { opacity: 0.3; transform: scale(0.98); }
+  50%      { opacity: 1; transform: scale(1.02); }
+}
+
+/* Speaking — no CSS animation, JS handles pulses */
+.speaking .jarvis-ring { animation: none; }
+
+/* ─── STATUS ─── */
+.jarvis-status {
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+/* ─── RESPONSE ─── */
+.jarvis-response {
+  max-width: 500px;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  color: var(--ink-700);
+  animation: jarvis-fadeIn 0.3s ease;
+}
+
+@keyframes jarvis-fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── INPUT ─── */
+.jarvis-input {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 480px;
+}
+
+.jarvis-input input {
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-900);
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.jarvis-input input:focus-visible {
+  border-color: var(--teal-600);
+  box-shadow: 0 0 0 3px var(--teal-100);
+}
+
+.jarvis-input button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--teal-600);
+  background: var(--teal-50);
+  color: var(--teal-700);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.jarvis-input button:hover { background: var(--teal-100); }
+.jarvis-input button:disabled { opacity: 0.4; cursor: not-allowed; }
+.jarvis-input button.is-listening { background: var(--brick-100); border-color: var(--brick-500); }
+
+@container phone-screen (max-width: 500px) {
+  .jarvis-orb { width: 180px; height: 180px; }
+}

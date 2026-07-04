@@ -1,0 +1,95 @@
+/* Mobile-first: no-op. The actual phone bezel only kicks in above
+   the breakpoint below, so visiting on a real phone looks identical
+   to before this component existed. Heights stay 100% (not auto) so
+   the html/body/#root height:100% chain still reaches .shell's own
+   min-height:100% — overflow stays visible so the page still scrolls
+   normally, this is purely to keep the percentage chain intact. */
+.phone-frame-backdrop,
+.phone-frame,
+.phone-frame-screen {
+  height: 100%;
+}
+
+/* Every responsive breakpoint in the app queries this container's
+   width, not the browser viewport — so pages render at their mobile
+   layout whenever they're actually narrow, whether that's a real
+   phone screen or the frame below on a wide desktop window. */
+.phone-frame-screen {
+  container-type: inline-size;
+  container-name: phone-screen;
+}
+
+.phone-frame-notch {
+  display: none;
+}
+
+@media (min-width: 860px) {
+  .phone-frame-backdrop {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: radial-gradient(circle at 50% 20%, #1F5C3F 0%, #0F3D2A 70%, #0A2F20 100%);
+  }
+
+  .phone-frame {
+    position: relative;
+    width: 390px;
+    height: min(844px, 92vh);
+    background: #0B0F0C;
+    border-radius: 55px;
+    padding: 14px;
+    box-shadow: 0 30px 60px rgba(10, 30, 20, 0.45), 0 8px 20px rgba(10, 30, 20, 0.3);
+    flex-shrink: 0;
+  }
+
+  /* volume + power buttons — decorative bars on the bezel edge */
+  .phone-frame::before,
+  .phone-frame::after {
+    content: '';
+    position: absolute;
+    background: #0B0F0C;
+    border-radius: 3px;
+  }
+  .phone-frame::before {
+    left: -3px;
+    top: 130px;
+    width: 3px;
+    height: 60px;
+    box-shadow: 0 90px 0 #0B0F0C, 0 158px 0 #0B0F0C;
+  }
+  .phone-frame::after {
+    right: -3px;
+    top: 180px;
+    width: 3px;
+    height: 90px;
+  }
+
+  .phone-frame-notch {
+    display: block;
+    position: absolute;
+    top: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 28px;
+    background: #0B0F0C;
+    border-radius: var(--radius-pill);
+    z-index: 5;
+  }
+
+  .phone-frame-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 42px;
+    background: var(--stone-50);
+  }
+
+  .phone-frame-screen::-webkit-scrollbar {
+    width: 0;
+  }
+}

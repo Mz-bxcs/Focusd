@@ -1,0 +1,213 @@
+/* ============================================================
+   FOCUSD — design tokens
+   A study companion for brains that focus differently.
+   Palette: a nature theme — jade green + light green + light blue,
+   matching the leaf mark in public/favicon.svg. The Sensory Dial's
+   --saturation control still tames it for anyone who needs Calm
+   mode; vividness is adjustable, not fixed.
+   Token *names* below are unchanged from earlier revisions of this
+   palette (--teal-*, --gold-*, --stone-*) even though the hues have
+   moved again — every page's CSS already references these names,
+   so only the values needed to change.
+   ============================================================ */
+
+:root {
+  /* ---- color: base (light green) ---- */
+  --stone-50:  #E6F5E7;
+  --stone-100: #D3E9D6;
+  --stone-200: #BEDDC2;
+  --paper:     #F7FCF6;
+
+  /* ---- color: ink ---- */
+  --ink-900: #1E2A22;
+  --ink-700: #3C4A3F;
+  --ink-500: #6B7A6D;
+  --ink-300: #A3AFA0;
+
+  /* ---- color: accents (primary = jade green) ---- */
+  --teal-700: #14735A;
+  --teal-600: #1F9C7A;
+  --teal-500: #4CBE9C;
+  --teal-100: #D9F0E6;
+  --teal-50:  #EEF8F3;
+
+  /* ---- color: secondary accent (light blue) ---- */
+  --gold-600: #2E86AB;
+  --gold-500: #6EC6E8;
+  --gold-100: #E3F6FC;
+
+  --brick-600: #A24C3D;
+  --brick-500: #C15F4E;
+  --brick-100: #F5DDD3;
+
+  --line: #CBE3CD;
+  --line-strong: #A9CFAD;
+
+  /* ---- type ---- */
+  --font-display: "Lexend", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Lexend", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  /* ---- shape ---- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* ---- sensory dial defaults (level 3 / Balanced) ---- */
+  --font-scale: 1;
+  --space-scale: 1;
+  --motion-duration: 180ms;
+  --motion-scale: 1;
+  --saturation: 1;
+  --card-elevation: 0 1px 2px rgba(30,42,34,0.06), 0 6px 16px rgba(30,42,34,0.05);
+
+  color-scheme: light;
+}
+
+/* ---------------------------------------------------------
+   Sensory Dial states — the signature control.
+   Level 1 Calm .. Level 5 Vivid. Everything responds live:
+   type size, spacing, motion, and color intensity.
+   --------------------------------------------------------- */
+html[data-stim="1"] {
+  --font-scale: 1.12;
+  --space-scale: 1.22;
+  --motion-duration: 0ms;
+  --motion-scale: 0;
+  --saturation: 0.55;
+}
+html[data-stim="2"] {
+  --font-scale: 1.06;
+  --space-scale: 1.1;
+  --motion-duration: 80ms;
+  --motion-scale: 0.4;
+  --saturation: 0.75;
+}
+html[data-stim="3"] {
+  --font-scale: 1;
+  --space-scale: 1;
+  --motion-duration: 180ms;
+  --motion-scale: 1;
+  --saturation: 1;
+}
+html[data-stim="4"] {
+  --font-scale: 0.98;
+  --space-scale: 0.92;
+  --motion-duration: 260ms;
+  --motion-scale: 1.3;
+  --saturation: 1.15;
+}
+html[data-stim="5"] {
+  --font-scale: 0.96;
+  --space-scale: 0.84;
+  --motion-duration: 340ms;
+  --motion-scale: 1.6;
+  --saturation: 1.3;
+}
+
+html[data-high-contrast="true"] {
+  --stone-50: #FFFFFF;
+  --ink-900: #000000;
+  --ink-700: #14201A;
+  --line-strong: #000000;
+  --teal-700: #0B5940;
+}
+
+html[data-dyslexic-font="true"] {
+  --font-display: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+/* Blunt override — wins over whatever the sensory dial has set,
+   for anyone who wants motion off without retuning the whole dial. */
+html[data-reduce-motion="true"] {
+  --motion-duration: 0ms;
+  --motion-scale: 0;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--stone-50);
+  color: var(--ink-900);
+  font-family: var(--font-body);
+  font-size: calc(16.5px * var(--font-scale));
+  line-height: 1.55;
+  filter: saturate(var(--saturation));
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ink-900);
+}
+
+p { margin: 0; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a { color: inherit; }
+
+::selection {
+  background: var(--teal-100);
+}
+
+/* Visible keyboard focus, always */
+:focus-visible {
+  outline: 2.5px solid var(--teal-600);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 calc(24px * var(--space-scale));
+}
+
+/* ---- shared buttons (used across every page) ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  text-decoration: none;
+  transition: transform var(--motion-duration) ease, opacity var(--motion-duration) ease;
+  white-space: nowrap;
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary {
+  background: var(--gold-500);
+  color: var(--ink-900);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1.5px solid var(--line-strong);
+  color: var(--ink-900);
+}

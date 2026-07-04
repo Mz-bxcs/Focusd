@@ -1,0 +1,151 @@
+.focus-wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: calc(20px * var(--space-scale));
+}
+
+.focus-title {
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+}
+
+.focus-sub {
+  color: var(--ink-500);
+  margin-bottom: calc(32px * var(--space-scale));
+}
+
+.focus-presets {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: calc(24px * var(--space-scale));
+}
+
+.focus-preset {
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
+  font-weight: 500;
+  color: var(--ink-700);
+  transition: border-color var(--motion-duration) ease, background var(--motion-duration) ease;
+}
+
+.focus-preset.is-active {
+  border-color: var(--teal-600);
+  background: var(--teal-100);
+  color: var(--teal-700);
+}
+
+.focus-custom {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: calc(24px * var(--space-scale));
+}
+
+.focus-custom input[type="range"] {
+  width: 220px;
+  accent-color: var(--teal-600);
+}
+
+.focus-custom-val {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--ink-700);
+  width: 60px;
+}
+
+.focus-start-btn {
+  padding: 14px 36px;
+  font-size: 1rem;
+}
+
+.focus-wrap--running {
+  padding-top: calc(28px * var(--space-scale));
+}
+
+.focus-ring-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto calc(28px * var(--space-scale));
+}
+
+.focus-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.focus-ring-track {
+  fill: none;
+  stroke: var(--stone-200);
+  stroke-width: 10;
+}
+
+.focus-ring-fill {
+  fill: none;
+  stroke: var(--teal-600);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.focus-ring-time {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.focus-ring-time-num {
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.focus-ring-time-label {
+  font-size: 0.82rem;
+  color: var(--ink-500);
+}
+
+.focus-nudge {
+  background: var(--teal-50);
+  color: var(--teal-700);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 0.9rem;
+  margin-bottom: calc(24px * var(--space-scale));
+}
+
+.focus-running-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.focus-end-btn {
+  padding: 12px 30px;
+}
+
+.focus-wrap--done {
+  padding-top: calc(80px * var(--space-scale));
+}
+
+.focus-done-title {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.focus-done-copy {
+  color: var(--ink-500);
+  margin-bottom: calc(28px * var(--space-scale));
+}

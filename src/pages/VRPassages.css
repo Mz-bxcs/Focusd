@@ -1,0 +1,39 @@
+.vr-passage-wrap {
+  max-width: 680px;
+}
+
+.vr-passage-title {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+
+.vr-passage-text {
+  background: var(--stone-100);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-bottom: calc(24px * var(--space-scale));
+  max-height: 320px;
+  overflow-y: auto;
+  font-size: 0.92rem;
+  color: var(--ink-700);
+}
+
+.vr-passage-text p {
+  margin-bottom: 12px;
+}
+
+.vr-passage-text p:last-child {
+  margin-bottom: 0;
+}
+
+.vr-question-card {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: calc(22px * var(--space-scale));
+}
+
+.vr-question-text {
+  font-size: 1.1rem;
+  margin-bottom: calc(18px * var(--space-scale));
+}

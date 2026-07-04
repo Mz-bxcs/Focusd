@@ -1,0 +1,91 @@
+.clarity-wrap {
+  max-width: 680px;
+}
+
+.clarity-eyebrow {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal-600);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.clarity-title {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  max-width: 30ch;
+}
+
+.clarity-sub {
+  color: var(--ink-500);
+  margin-bottom: calc(28px * var(--space-scale));
+  max-width: 56ch;
+}
+
+.clarity-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: calc(32px * var(--space-scale));
+}
+
+.clarity-tile {
+  text-align: center;
+  border-radius: var(--radius-md);
+  padding: calc(20px * var(--space-scale)) calc(12px * var(--space-scale));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  transition: transform var(--motion-duration) ease, border-color var(--motion-duration) ease;
+}
+
+.clarity-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--teal-500);
+}
+
+.clarity-tile-icon {
+  font-size: 1.6rem;
+}
+
+.clarity-tile-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ink-900);
+}
+
+.clarity-tile-detail {
+  font-size: 0.76rem;
+  color: var(--ink-500);
+}
+
+.clarity-section-title {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.clarity-mood-history {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.clarity-mood-chip {
+  font-size: 1.4rem;
+  background: var(--stone-100);
+  border-radius: var(--radius-pill);
+  padding: 8px 12px;
+  cursor: default;
+}
+
+@container phone-screen (max-width: 640px) {
+  .clarity-tile-grid { grid-template-columns: 1fr 1fr; }
+}
+@container phone-screen (max-width: 380px) {
+  .clarity-tile-grid { grid-template-columns: 1fr; }
+}

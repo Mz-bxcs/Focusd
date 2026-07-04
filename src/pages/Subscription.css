@@ -1,0 +1,75 @@
+.sub-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.sub-eyebrow {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal-600);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.sub-title {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  max-width: 46ch;
+}
+
+.sub-sub {
+  color: var(--ink-500);
+  margin-bottom: calc(32px * var(--space-scale));
+}
+
+.sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.sub-card {
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: calc(24px * var(--space-scale));
+  background: var(--paper);
+}
+
+.sub-card.is-current {
+  border-color: var(--teal-600);
+}
+
+.sub-card--premium {
+  background: var(--gold-100);
+}
+
+.sub-card-title {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+.sub-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--ink-700);
+}
+
+.sub-feature-list li::before {
+  content: '✓ ';
+  color: var(--teal-600);
+  font-weight: 700;
+}
+
+.sub-toggle-btn {
+  width: 100%;
+}
+
+@container phone-screen (max-width: 620px) {
+  .sub-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,121 @@
+.dm-module-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.dm-module-card {
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  padding: calc(20px * var(--space-scale));
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  transition: transform var(--motion-duration) ease, border-color var(--motion-duration) ease;
+}
+
+.dm-module-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--teal-500);
+}
+
+.dm-module-icon {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+
+.dm-module-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--ink-900);
+}
+
+.dm-module-subtitle {
+  font-size: 0.82rem;
+  color: var(--ink-500);
+}
+
+.dm-module-mins {
+  font-size: 0.76rem;
+  color: var(--ink-300);
+  margin-top: 6px;
+}
+
+.dm-module-wrap {
+  max-width: 680px;
+}
+
+.dm-module-page-title {
+  font-size: 1.5rem;
+  margin-bottom: calc(20px * var(--space-scale));
+}
+
+.dm-theory-block {
+  margin-bottom: calc(22px * var(--space-scale));
+}
+
+.dm-theory-heading {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.dm-theory-block p {
+  font-size: 0.92rem;
+  color: var(--ink-700);
+  line-height: 1.6;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+}
+
+.dm-tip-block {
+  background: var(--gold-100);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  margin-bottom: calc(22px * var(--space-scale));
+}
+
+.dm-tip-block p {
+  font-size: 0.9rem;
+  color: var(--ink-700);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-bottom: 8px;
+}
+
+.dm-tip-block p:last-child {
+  margin-bottom: 0;
+}
+
+.dm-speed-tip {
+  background: var(--teal-50);
+}
+
+.dm-table-wrap {
+  overflow-x: auto;
+}
+
+.dm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.dm-table th, .dm-table td {
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.dm-table th {
+  background: var(--stone-100);
+  color: var(--ink-700);
+  font-weight: 600;
+}
+
+@container phone-screen (max-width: 560px) {
+  .dm-module-grid { grid-template-columns: 1fr; }
+}

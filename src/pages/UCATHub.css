@@ -1,0 +1,115 @@
+.ucat-hub {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ucat-eyebrow {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal-600);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.ucat-title {
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+}
+
+.ucat-sub {
+  color: var(--ink-500);
+  margin-bottom: calc(32px * var(--space-scale));
+  max-width: 56ch;
+}
+
+.ucat-section-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.ucat-section-card {
+  border-radius: var(--radius-md);
+  padding: calc(16px * var(--space-scale));
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  transition: transform var(--motion-duration) ease, border-color var(--motion-duration) ease;
+}
+
+.ucat-section-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+}
+
+.ucat-section-card-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.ucat-section-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.ucat-section-extra {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--teal-600);
+  text-decoration: none;
+  text-align: center;
+}
+
+.ucat-section-extra:hover {
+  text-decoration: underline;
+}
+
+.ucat-section-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--ink-900);
+}
+
+.ucat-section-desc {
+  font-size: 0.74rem;
+  color: var(--ink-500);
+}
+
+.ucat-section-count {
+  font-size: 0.72rem;
+  color: var(--ink-300);
+  margin-top: 2px;
+}
+
+@container phone-screen (max-width: 760px) {
+  .ucat-section-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@container phone-screen (max-width: 480px) {
+  .ucat-section-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.ucat-plan-link {
+  display: inline-block;
+  margin-top: calc(28px * var(--space-scale));
+  color: var(--teal-600);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ucat-plan-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,91 @@
+.mood-checker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 30, 22, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  animation: fadeIn 0.3s ease;
+  padding: 20px;
+}
+
+.mood-checker-container {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: calc(28px * var(--space-scale));
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(15, 30, 22, 0.25);
+  animation: slideUp 0.4s ease;
+}
+
+.mood-checker-container h2 {
+  color: var(--ink-900);
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+}
+
+.mood-checker-subtitle {
+  color: var(--ink-500);
+  margin: 0 0 calc(20px * var(--space-scale));
+  font-size: 0.92rem;
+}
+
+.mood-options {
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  margin: calc(20px * var(--space-scale)) 0;
+  flex-wrap: wrap;
+}
+
+.mood-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: var(--stone-100);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 14px 10px;
+  cursor: pointer;
+  transition: transform var(--motion-duration) ease, border-color var(--motion-duration) ease, background var(--motion-duration) ease;
+  min-width: 66px;
+  color: var(--ink-500);
+}
+
+.mood-button:hover {
+  background: var(--teal-100);
+  border-color: var(--teal-600);
+  transform: translateY(-2px);
+}
+
+.mood-button.selected {
+  background: var(--teal-600);
+  border-color: var(--teal-600);
+  color: #FFFFFF;
+}
+
+.mood-emoji {
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.mood-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.mood-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: calc(20px * var(--space-scale));
+}
+
+.mood-actions .btn {
+  flex: 1;
+}
